@@ -9,7 +9,7 @@ Final project of the Ironhack Data Analytics bootcamp.
 - 📈 **Tableau dashboard:** [Olist – Delivery or Product?](https://public.tableau.com/app/profile/pariya.lakani/viz/OlistDeliveryorProduct/OlistReviewDrivers)
 - 📊 **Power BI dashboard:** [dashboard/dashboard.pdf](dashboard/dashboard.pdf) (Power BI file: [dashboard/dashboard.pbix](dashboard/dashboard.pbix))
 - 🎤 **Presentation:** [Slides (Google Slides)](https://docs.google.com/presentation/d/1EruG-10wZLD4qMhrh9Fn2lYXXDfpRdol/edit?usp=sharing&ouid=109599469251149380786&rtpof=true&sd=true)
-- 📋 **Project board:** [Trello](PASTE-PUBLIC-TRELLO-LINK-HERE)
+- 📋 **Project board:** [Trello](https://trello.com/b/WoATWDb9/marketplace-reviews-what-to-fix-first)
 - 🗂️ **Data:** [Brazilian E-Commerce Public Dataset by Olist (Kaggle)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
 ---
