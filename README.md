@@ -6,7 +6,10 @@ Final project of the Ironhack Data Analytics bootcamp.
 
 **Links**
 - 🔮 **Live app:** [olist-review-risk.streamlit.app](https://olist-review-risk.streamlit.app/)
-- 📊 **Dashboard:** [dashboard/dashboard.pdf](dashboard/dashboard.pdf) (Power BI file: [dashboard/dashboard.pbix](dashboard/dashboard.pbix))
+- 📈 **Tableau dashboard:** [Olist – Delivery or Product?](https://public.tableau.com/app/profile/pariya.lakani/viz/OlistDeliveryorProduct/OlistReviewDrivers)
+- 📊 **Power BI dashboard:** [dashboard/dashboard.pdf](dashboard/dashboard.pdf) (Power BI file: [dashboard/dashboard.pbix](dashboard/dashboard.pbix))
+- 🎤 **Presentation:** [Slides (Google Slides)](https://docs.google.com/presentation/d/1EruG-10wZLD4qMhrh9Fn2lYXXDfpRdol/edit?usp=sharing&ouid=109599469251149380786&rtpof=true&sd=true)
+- 📋 **Project board:** [Trello](PASTE-PUBLIC-TRELLO-LINK-HERE)
 - 🗂️ **Data:** [Brazilian E-Commerce Public Dataset by Olist (Kaggle)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
 ---
@@ -22,7 +25,7 @@ Final project of the Ironhack Data Analytics bootcamp.
 | Negative rate, late orders | **62.4%** |
 
 1. **Late delivery is the strongest driver.** A late order is about 7 times more likely to get a negative review. The biggest jump is after 3 days late (1-3 days: 32%, 4-7 days: 68%).
-2. **Fixing delivery has the biggest impact.** Fixing late delivery could prevent about 3,400 negative reviews, fixing the 10 worst sellers about 200.
+2. **Fixing delivery has the biggest impact.** Fixing late delivery could prevent about 3,400 negative reviews, fixing the 10 sellers with the highest negative rate about 200.
 3. **Some sellers are much worse than others**, even when delivery is on time (up to 54% negative). But they cause only about 4% of the negative reviews.
 4. **Product category has only a small effect.** The worst category is about 2 times the average.
 5. **Many customers review before the order arrives.** 5% of reviews are written before delivery. 93.5% of these orders are late, and 71% of these reviews are negative.
@@ -33,7 +36,7 @@ Three different methods give the same answer: the EDA, the hypothesis tests (Cra
 
 1. **Reduce late deliveries**, especially delays of more than 3 days (main lever).
 2. **Proactively inform customers** when an order will be late, and send the review request only after the order arrives.
-3. **Work with the worst sellers** (quick win).
+3. **Work with the sellers with the highest negative rate** (quick win).
 4. **Next step:** analyse the review comments to understand the negative reviews on on-time orders (66% of all negative reviews).
 
 ---
@@ -46,7 +49,7 @@ Three different methods give the same answer: the EDA, the hypothesis tests (Cra
 | 2. Join the tables into one analysis table | SQL (MySQL) | [sql/01_build_analysis_table.sql](sql/01_build_analysis_table.sql) |
 | 3. Cleaning, EDA, hypothesis tests | Python (pandas, matplotlib, seaborn, scipy) | [notebooks/02_cleaning_eda.ipynb](notebooks/02_cleaning_eda.ipynb) |
 | 4. Analysis queries | SQL (MySQL) | [sql/02_analysis_queries.sql](sql/02_analysis_queries.sql) |
-| 5. Dashboard | Power BI | [dashboard/](dashboard/) |
+| 5. Dashboards | Power BI, Tableau | [dashboard/](dashboard/), [Tableau Public](https://public.tableau.com/app/profile/pariya.lakani/viz/OlistDeliveryorProduct/OlistReviewDrivers) |
 | 6. Machine learning | scikit-learn (Pipeline, Gradient Boosting) | [notebooks/03_ml_model.ipynb](notebooks/03_ml_model.ipynb) |
 | 7. App | Streamlit | [app.py](app.py) |
 
@@ -90,7 +93,7 @@ The model finds almost half of the unhappy customers. It cannot go much higher, 
 ```
 ├── notebooks/            # data understanding, EDA, machine learning
 ├── sql/                  # build the analysis table, analysis queries
-├── dashboard/            # Power BI dashboard (.pbix and .pdf)
+├── dashboard/            # Power BI dashboard (.pbix and .pdf); Tableau is on Tableau Public
 ├── .streamlit/           # app theme
 ├── app.py                # Streamlit app
 ├── model.pkl             # trained model (pipeline)
