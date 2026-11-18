@@ -1,8 +1,10 @@
 # Olist: Are bad reviews caused by delivery or product?
 
-Final project of the Ironhack Data Analytics bootcamp.
+**Business question:** why do customers leave bad reviews on the Olist marketplace (Brazil): because of the delivery, or because of the product and the seller? And where should the marketplace act first?
 
-**Main question:** why do customers leave bad reviews on the Olist marketplace: because of the delivery, or because of the product and the seller? And where should the marketplace act first?
+> **Summary:** I analysed 94,563 orders end to end (MySQL, Python, Power BI, Tableau, scikit-learn, Streamlit). **Late delivery is the main driver of bad reviews:** 62.4% of late orders get a negative review vs. 8.7% of on-time orders. Fixing late delivery could prevent about **3,400** negative reviews, vs. about **200** from fixing the 10 worst sellers. A live app flags orders at risk of a bad review.
+
+`SQL (MySQL)` `Python` `pandas` `scipy` `scikit-learn` `Power BI` `Tableau` `Streamlit`
 
 **Links**
 - 🔮 **Live app:** [olist-review-risk.streamlit.app](https://olist-review-risk.streamlit.app/)
@@ -104,4 +106,6 @@ The model finds almost half of the unhappy customers. It cannot go much higher, 
 
 ---
 
-**Author:** Pariya Lakani
+**Author:** Pariya Lakani · [LinkedIn](https://www.linkedin.com/in/lakani-dataanalyst) · [GitHub](https://github.com/pari14830) · [Tableau Public](https://public.tableau.com/app/profile/pariya.lakani)
+
+*Individual project, November 2026. Built during the Ironhack Data Analytics programme (Berlin).*
