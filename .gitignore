@@ -1,0 +1,41 @@
+# Secrets
+.env
+.env.*
+*.key
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Build artifacts
+_pbix_extract/
+_ppt_assets/
+
+# Raw Kaggle data (users download from Kaggle)
+data/olist_customers_dataset.csv
+data/olist_geolocation_dataset.csv
+data/olist_order_items_dataset.csv
+data/olist_order_payments_dataset.csv
+data/olist_orders_dataset.csv
+data/olist_products_dataset.csv
+data/olist_sellers_dataset.csv
+data/olist_order_reviews_dataset.csv
+data/product_category_name_translation.csv
+
+# Large backups
+olist_dashboard - Copy.csv
+
+# Stray assets
+download*.jpg
+images.jpg
+
+# Old app versions
+app_agent.py
+app_combined_with_dashboard.py
+
+# OS files
+.DS_Store
+Thumbs.db
