@@ -97,7 +97,7 @@ def load_dashboard():
     The category is 'no_complaint' on orders that are not in the classified
     negative-review file. Dates are parsed once so filter changes stay fast.
     """
-    df = pd.read_csv("olist_dashboard.csv")
+    df = pd.read_csv("olist_dashboard.zip")
     df["order_purchase_timestamp"] = pd.to_datetime(df["order_purchase_timestamp"])
     df["category"] = (
         df["category"]
