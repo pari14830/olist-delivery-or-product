@@ -1,6 +1,8 @@
 # Olist Review Insight — Why customers leave bad reviews
 
-**End-to-end analysis of 94,563 orders and 8,760 Portuguese review comments from the Brazilian e-commerce marketplace Olist. SQL + Python for the data work, Power BI and Tableau for the dashboards, a Streamlit app with an LLM-based agent and local semantic search for the demo.**
+**End-to-end analysis of 94,563 orders and 8,760 Portuguese review comments from the Brazilian e-commerce marketplace Olist. SQL + Python for the data work, Power BI and Tableau for the dashboards, a Streamlit app with an LLM-based agent and local semantic search for an interactive demo.**
+
+> **Built for Olist's operations, quality-analysts, and customer-service teams** — so they can see *where* negative reviews come from and dig into *what* customers wrote, without waiting for a data analyst.
 
 ---
 
@@ -8,7 +10,7 @@
 
 | | |
 |---|---|
-| 🧠 **Live app** (Streamlit) | [olist-review-risk.streamlit.app](https://olist-review-risk.streamlit.app/) |
+| 🧠 **Live app** (Streamlit) | [olist-delivery-or-product.streamlit.app](https://olist-delivery-or-product.streamlit.app/) |
 | 📊 **Power BI dashboard** (PDF preview) | [dashboard/dashboard.pdf](dashboard/dashboard.pdf) |
 | 📈 **Tableau dashboard** (Part 1) | [Olist – Delivery or Product?](https://public.tableau.com/app/profile/pariya.lakani/viz/OlistDeliveryorProduct/OlistReviewDrivers) |
 | 🎤 **Presentation slides** (Part 2) | [Google Slides](https://docs.google.com/presentation/d/1CsBHF1f0oCt6ZM0mj0v31Xrn1liXnsXX/edit?usp=sharing&ouid=109599469251149380786&rtpof=true&sd=true) |
@@ -25,6 +27,16 @@
 > Reading the **8,760 Portuguese review comments** reveals what those on-time complaints are really about — and surfaces one issue that was invisible in the old metrics.
 
 **The surprise finding:** 782 orders were marked delivered on time, but customers wrote that the product never arrived — 752 of those reviews were written **after** the recorded delivery date. Likely a tracking-system or last-mile issue worth auditing.
+
+---
+
+## Who this is for
+
+The app, dashboards and agent are designed so a non-technical operations team can use them directly:
+
+- **Operations managers** — spot where delivery problems concentrate (state, seller, delay bucket) and flag the phantom-delivery orders for an audit.
+- **Quality analysts** — explore patterns by category in the Power BI dashboard and the Streamlit dashboard tab, and search the comments by theme in the agent.
+- **Customer-service leads** — score individual orders for negative-review risk (Predict tab) so agents can send an apology or a coupon early, or run a batch of orders through the scorer.
 
 ---
 
@@ -125,13 +137,12 @@ The classification labels answer the questions I thought of when I designed them
 
 **All embeddings run locally.** The model (`paraphrase-multilingual-MiniLM-L12-v2`, ~400 MB) encodes each review into a 384-dimensional vector, stored in a local **Chroma** index. Review text never leaves the laptop for retrieval. The LLM call that writes the final answer runs on **Groq** (`openai/gpt-oss-120b`) for speed and cost; the agent system prompt constrains it to answer only from tool results.
 
-### 4. Streamlit app
+### 4. Streamlit app — four tabs
 
-Four tabs:
-- **Predict** — single-order risk score (Part 1 model)
-- **Batch upload** — score a CSV of orders at once
-- **Dashboard** — interactive charts with delivery-status filter
-- **Ask the agent** — chat UI, with starter questions and a download-conversation export
+- **Predict** — single-order risk score (Part 1 model). For customer service: send an early apology or coupon.
+- **Batch upload** — score a CSV of orders at once, download a sample template.
+- **Dashboard** — interactive charts with delivery-status filter. For ops + quality.
+- **Ask the agent** — chat UI with starter questions and a download-conversation export.
 
 ---
 
@@ -161,7 +172,7 @@ Full notebooks under `notebooks/01…03`.
 | **Part 2 — LLM classification** | OpenAI, Pydantic | [`classify_all.py`](classify_all.py) |
 | **Part 2 — Agent notebook** | Groq (OpenAI SDK compatible) | [`notebooks/04_review_agent_organized.ipynb`](notebooks/04_review_agent_organized.ipynb) |
 | **Part 2 — RAG / semantic search** | Sentence Transformers + Chroma | [`notebooks/05_rag_search.ipynb`](notebooks/05_rag_search.ipynb) |
-| **Part 2 — App** | Streamlit + Groq + RAG | [`app_final.py`](app_final.py) |
+| **Part 2 — App** | Streamlit + Groq + RAG | [`app.py`](app.py) |
 
 ---
 
@@ -180,12 +191,15 @@ Full notebooks under `notebooks/01…03`.
 │   ├── dashboard.pdf                      PDF export
 │   └── Olist – Delivery or Product.twbx   Tableau (Part 1)
 ├── data/
-│   └── sample_classified_full.csv         Cached LLM classifications (8,760)
-├── app_final.py                           Streamlit app with all 4 tabs
+│   ├── sample_classified_full.csv         Cached LLM classifications (8,760)
+│   ├── review_embeddings.parquet          Cached embeddings (for re-building Chroma)
+│   ├── chroma_reviews/                    Local Chroma vector index
+│   └── brazil_states.geojson              Map shapes for the Streamlit dashboard
+├── app.py                                 Streamlit app with all 4 tabs
 ├── classify_all.py                        One-time offline classification script
-├── build_dashboard_with_category.py       Adds `category` to olist_dashboard.csv
+├── build_dashboard_with_category.py       Adds `category` to olist_dashboard
 ├── model.pkl                              Trained Part 1 model
-├── olist_dashboard.csv                    Clean analysis table (one row per order)
+├── olist_dashboard.zip                    Clean analysis table (one row per order)
 ├── sample_orders.csv                      200 test orders for the batch upload
 ├── requirements.txt
 └── README.md
@@ -212,7 +226,7 @@ python classify_all.py
 #    Open notebooks/05_rag_search.ipynb and Run All (first run takes ~5 min)
 
 # 6. Run the app (needs GROQ_API_KEY in .env)
-streamlit run app_final.py
+streamlit run app.py
 ```
 
 `.env` keys used:
