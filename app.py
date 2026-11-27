@@ -8,7 +8,7 @@ Four tabs:
   4. Ask the agent — chat over 8,760 classified negative reviews + semantic search
 
 Run locally (from this folder):
-    streamlit run app_final.py
+    streamlit run app.py
 
 Paths are relative to the working directory, same as the previous app.
 Semantic search needs the extra packages used in notebooks/05_rag_search.ipynb:
