@@ -92,13 +92,25 @@ def load_model():
 
 @st.cache_data
 def load_dashboard():
-    """Full order table (94,563 rows), including the complaint category column."""
+    """Full order table (94,563 rows), including the complaint category column.
+
+    The category is 'no_complaint' on orders that are not in the classified
+    negative-review file. Dates are parsed once so filter changes stay fast.
+    """
     df = pd.read_csv("olist_dashboard.zip")
     df["order_purchase_timestamp"] = pd.to_datetime(df["order_purchase_timestamp"])
+    # Backfill category from the classified sample when the dashboard file
+    # was built before Part 2's category column was added.
     if "category" not in df.columns:
-        classified = pd.read_csv("data/sample_classified_full.csv")[["order_id", "category"]].drop_duplicates(subset=["order_id"])
+        classified = pd.read_csv("data/sample_classified_full.csv")[
+            ["order_id", "category"]
+        ].drop_duplicates(subset=["order_id"])
         df = df.merge(classified, on="order_id", how="left")
-    df["category"] = df["category"].fillna("no_complaint").replace({"seller_issue": "customer_service_issue"})
+    df["category"] = (
+        df["category"]
+        .fillna("no_complaint")
+        .replace({"seller_issue": "customer_service_issue"})
+    )
     return df
 
 
@@ -1181,13 +1193,19 @@ def show_chart(fig, empty_message):
 # ============================================================
 with st.sidebar:
     st.markdown("### Olist Review Insight")
-    st.markdown("See where negative reviews come from and dig into the comments.")
     st.markdown(
-        "- **Predict** — score a single order's risk of a bad review.\n"
-        "- **Batch** — upload a CSV and score many orders at once.\n"
-        "- **Dashboard** — explore patterns by delivery, product, seller and state.\n"
+        "**Built for Olist's operations, quality analyst, and customer-service teams** — "
+        "so they can see where negative reviews come from and dig into the comments "
+        "without waiting for a data analyst."
+    )
+    st.markdown("---")
+    st.markdown("**What each tab does**")
+    st.markdown(
+        "- **Predict** — score a single order's risk of a bad review (for CS: send an apology or a coupon early).\n"
+        "- **Batch** — upload a CSV of orders and score them all at once.\n"
+        "- **Dashboard** — explore patterns by delivery, product, seller and state (for ops + quality).\n"
         "- **Ask the agent** — ask natural-language questions about the 8,760 "
-        "negative review comments and get answers with real examples."
+        "negative review comments; get answers with real translated examples."
     )
 
 
@@ -1196,6 +1214,7 @@ with st.sidebar:
 # ============================================================
 st.title("Olist Review Insight")
 st.caption(
+    "A tool for **operations, quality analysts, and customer-service teams**. "
     "Score the risk of a bad review, see the patterns behind late deliveries, "
     "and ask questions about what customers wrote."
 )
