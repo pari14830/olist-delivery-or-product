@@ -249,6 +249,6 @@ streamlit run app.py
 ## About
 
 **Pariya Lakani** · Data analyst (QA / Trust & Safety background)
-Berlin, Germany · [LinkedIn](https://www.linkedin.com/in/pariya-lakani/)
+Berlin, Germany · [LinkedIn](www.linkedin.com/in/lakani-dataanalyst)
 
 Project originally built as the final project of the Ironhack Data Analytics bootcamp; Part 2 is a self-directed extension.
