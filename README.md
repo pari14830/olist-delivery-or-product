@@ -10,7 +10,7 @@
 
 | | |
 |---|---|
-| 🧠 **Live app** (Streamlit) | [olist-delivery-or-product.streamlit.app](https://olist-delivery-or-product.streamlit.app/) |
+| 🧠 **Live app** (Streamlit) | [olist-delivery-or-product.streamlit.app](https://olist-review-risk.streamlit.app/) |
 | 📊 **Power BI dashboard** (PDF preview) | [dashboard/dashboard.pdf](dashboard/dashboard.pdf) |
 | 📈 **Tableau dashboard** (Part 1) | [Olist – Delivery or Product?](https://public.tableau.com/app/profile/pariya.lakani/viz/OlistDeliveryorProduct/OlistReviewDrivers) |
 | 🎤 **Presentation slides** (Part 2) | [Google Slides](https://docs.google.com/presentation/d/1CsBHF1f0oCt6ZM0mj0v31Xrn1liXnsXX/edit?usp=sharing&ouid=109599469251149380786&rtpof=true&sd=true) |
