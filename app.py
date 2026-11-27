@@ -92,23 +92,13 @@ def load_model():
 
 @st.cache_data
 def load_dashboard():
-    """Full order table (94,563 rows), including the complaint category column.
-
-    The category is 'no_complaint' on orders that are not in the classified
-    negative-review file. Dates are parsed once so filter changes stay fast.
-    """
-        df = pd.read_csv("olist_dashboard.zip")
+    """Full order table (94,563 rows), including the complaint category column."""
+    df = pd.read_csv("olist_dashboard.zip")
     df["order_purchase_timestamp"] = pd.to_datetime(df["order_purchase_timestamp"])
     if "category" not in df.columns:
-        classified = pd.read_csv("data/sample_classified_full.csv")[
-            ["order_id", "category"]
-        ].drop_duplicates(subset=["order_id"])
+        classified = pd.read_csv("data/sample_classified_full.csv")[["order_id", "category"]].drop_duplicates(subset=["order_id"])
         df = df.merge(classified, on="order_id", how="left")
-    df["category"] = (
-        df["category"]
-        .fillna("no_complaint")
-        .replace({"seller_issue": "customer_service_issue"})
-    )
+    df["category"] = df["category"].fillna("no_complaint").replace({"seller_issue": "customer_service_issue"})
     return df
 
 
